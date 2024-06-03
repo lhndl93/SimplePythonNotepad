@@ -1,8 +1,12 @@
-import time, os, random
+import time, os, platform
 
 
 def clear():
-    return os.system('clear')
+    system = platform.system()
+    if system == "Windows":
+        return os.system('cls')
+    else:
+        return os.system('clear')
 
 def print_notes():
     for number, note in note_list.items():
