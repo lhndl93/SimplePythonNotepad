@@ -32,8 +32,25 @@ def create_note(note_list):
     note_number = len(note_list) + 1
     note = input("Please enter your note: ")
     note_list[note_number] = note
+    
+def edit_note(note_number):
+    if note_number in note_list:
+        print("You are editing the following note:")
+        print(f"{note_list[note_number]}")
+        new_note = input("Enter your new note.. \n")
+        note_list[note_number] = new_note
+            
+def delete_note(note_number):
+    if note_number in note_list:
+            print("You are deleting the following note:")
+            time.sleep(0.5)
+            print(f"{note_list[note_number]}")
+            delete_note = input("Are you sure? (yes/no) ").lower()
+            if delete_note == "yes":
+                del note_list[note_number]
 
 def display_menu():
+    
     title = f"{text_color('BRIGHT_RED')}LEE'S NOTEBOOK"
     second_title = f"{text_color('BRIGHT_GREEN')}ADD, REMOVE and EDIT NOTES"
     option_one = f"{text_color('BRIGHT_BLUE')}Option 1: Add a note"
@@ -75,25 +92,13 @@ while True:
         clear()
         print_notes()
         note_number = int(input("What note would you like to edit? "))
-        if note_number in note_list:
-            print("You are editing the following note:")
-            print(f"{note_list[note_number]}")
-            new_note = input("Enter your new note.. \n")
-            note_list[note_number] = new_note
+        edit_note(note_number)
         continue
     elif option == "3":
         clear()
         print_notes()
         note_number = int(input("What note would you like to delete? "))
-        if note_number in note_list:
-            print("You are deleting the following note:")
-            time.sleep(0.5)
-            print(f"{note_list[note_number]}")
-            delete_note = input("Are you sure? (yes/no) ").lower()
-            if delete_note == "yes":
-                del note_list[note_number]    
-            else:
-                continue
+        delete_note(note_number)
         continue
     else:
         break
